@@ -85,7 +85,6 @@ function ChatUI({ currUserID }) {
 
   return (
     <div className="chat-ui">
-      <h2>RAGbot chat</h2>
       <div className="chat-messages">
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.isUser ? 'user' : 'recipient'}`}>
@@ -135,7 +134,6 @@ function App() {
 
     queueSocket.addEventListener('close', (event) => {
       console.log("Websocket was closed", event);
-      alert("The connection was closed! Please reload the page")
     });
 
     return () => {
