@@ -2,40 +2,63 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #e5ddd5;
 }
 
 .App {
   text-align: center;
 }
 
-.waiting-page, .chat-ui {
+.chat-ui {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  margin: 0;
-  padding: 20px;
-  box-sizing: border-box;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+/* Smartphone styles (up to 600px) */
+@media screen and (max-width: 600px) {
+  .chat-ui {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Desktop styles (above 600px) */
+@media screen and (min-width: 601px) {
+  .chat-ui {
+    width: 100%;
+    max-width: none;
+  }
 }
 
 h2 {
-  margin-top: 0;
+  margin: 0;
+  padding: 10px;
+  background-color: #075e54;
+  color: white;
+  font-size: 18px;
 }
 
 .chat-messages {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  border: 1px solid #eee;
-  margin-bottom: 10px;
   overflow-y: auto;
   padding: 10px;
+  background-image: url("../public/whatsapp-bg.jpg");
 }
 
 .message {
-  max-width: 70%;
+  max-width: 65%;
   margin: 5px 0;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 8px 12px;
+  border-radius: 7.5px;
+  font-size: 14px;
+  line-height: 1.4;
+  position: relative;
   word-wrap: break-word;
 }
 
@@ -44,30 +67,79 @@ h2 {
   background-color: #dcf8c6;
 }
 
+.user::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-left-color: #dcf8c6;
+  border-right: 0;
+  border-bottom: 0;
+}
+
 .recipient {
   align-self: flex-start;
-  background-color: #f1f0f0;
+  background-color: #ffffff;
+}
+
+.recipient::after {
+  content: '';
+  position: absolute;
+  left: -8px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-right-color: #ffffff;
+  border-left: 0;
+  border-bottom: 0;
 }
 
 .chat-input {
   display: flex;
-  margin-top: 10px;
+  padding: 10px;
+  background-color: #f0f0f0;
 }
 
 .chat-input input {
   flex-grow: 1;
   margin-right: 10px;
-  padding: 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
 }
 
 button {
-  padding: 5px 10px;
-  background-color: #007bff;
+  padding: 10px;
+  background-color: #075e54;
   color: white;
   border: none;
+  border-radius: 50%;
   cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #128c7e;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.fa-spinner {
+  font-size: 18px;
+}
+
+.fa-arrow-right {
+  font-size: 18px;
 }
