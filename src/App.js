@@ -34,6 +34,7 @@ function ChatUI({ currUserID }) {
 
     chatSocket.current.addEventListener('close', (event) => {
       console.log("Websocket was closed", event);
+      alert("The connection was closed! Please reload the page")
     });
 
     return () => {
@@ -134,6 +135,7 @@ function App() {
 
     queueSocket.addEventListener('close', (event) => {
       console.log("Websocket was closed", event);
+      alert("The connection was closed! Please reload the page")
     });
 
     return () => {
