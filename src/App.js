@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
 // Placeholder components
 const WaitingPage = ({queuePosition}) => (
   <div className="waiting-page">
     <h2>Waiting in Queue</h2>
+    <p>Please be patient. Since this application runs on a Raspberry Pi and executes embedding functions to convert tokens 
+      to words in order to perform retrieval in documents, there can only be one chat instance at a time!
+    </p>
     <p>{queuePosition}</p>
   </div>
 );
@@ -17,7 +21,7 @@ function ChatUI({ currUserID }) {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    chatSocket.current = new WebSocket(`wss://sebampuerom.de/ragbot/ws/chat?userID=${currUserID}`);
+    chatSocket.current = new WebSocket(`${process.env.REACT_APP_WEBSOCKET_C_URL}?userID=${currUserID}`);
 
     chatSocket.current.addEventListener('message', (event) => {
       processChatMessage(JSON.parse(event.data));
@@ -80,7 +84,7 @@ function ChatUI({ currUserID }) {
 
   return (
     <div className="chat-ui">
-      <h2>Chat</h2>
+      <h2>RAGbot chat</h2>
       <div className="chat-messages">
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.isUser ? 'user' : 'recipient'}`}>
@@ -115,9 +119,9 @@ function App() {
   const currUserID = useRef("");
 
   useEffect(() => {
-    const randomUUID = crypto.randomUUID();
+    const randomUUID = uuidv4();
     currUserID.current = randomUUID;
-    const queueSocket = new WebSocket(`wss://sebampuerom.de/ragbot/ws/queue?userID=${randomUUID}`);
+    const queueSocket = new WebSocket(`${process.env.REACT_APP_WEBSOCKET_Q_URL}?userID=${randomUUID}`);
 
     queueSocket.addEventListener('message', (event) => {
       processQueueMessages(event.data);
