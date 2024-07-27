@@ -30,7 +30,8 @@ html, body {
 @media screen and (min-width: 601px) {
   .chat-ui {
     width: 100%;
-    max-width: none;
+    max-width: 65%;
+    border-style: groove;
   }
 }
 
