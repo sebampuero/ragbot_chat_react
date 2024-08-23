@@ -66,6 +66,7 @@ h2 {
 .user {
   align-self: flex-end;
   background-color: #dcf8c6;
+  white-space: pre-wrap;
 }
 
 .user::after {
@@ -84,6 +85,7 @@ h2 {
 .recipient {
   align-self: flex-start;
   background-color: #ffffff;
+  white-space: pre-wrap;
 }
 
 .recipient::after {
