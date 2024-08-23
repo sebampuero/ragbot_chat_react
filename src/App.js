@@ -88,7 +88,9 @@ function ChatUI({ currUserID }) {
       <div className="chat-messages">
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.isUser ? 'user' : 'recipient'}`}>
-            {msg.content}
+            <span>
+              {msg.content}
+            </span>
           </div>
         ))}
         <div ref={messagesEndRef} />
